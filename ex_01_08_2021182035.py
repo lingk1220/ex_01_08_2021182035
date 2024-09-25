@@ -1,6 +1,6 @@
 words = [
 
-  '본인학번', 'hut', 'apostle', 'equipment', 'fop', 'refined', 'parapet', 'mog', 'amputate', 'covetous', 'somebody', 
+  '2021182035', 'hut', 'apostle', 'equipment', 'fop', 'refined', 'parapet', 'mog', 'amputate', 'covetous', 'somebody', 
 
   'all', 'lobbyist', 'remark', 'subscriber', 'quorum', 'steppe', 'clean', 'cu', 'commend', 'prosy',
 
@@ -25,9 +25,26 @@ words = [
 ]
 
 def heapify(root, size):
+  left_child = root * 2 + 1
+  if left_child >= size: return
+  child = left_child
+  right_child = root * 2 + 2
+  if right_child < size:
+    if words[left_child] < words[right_child]:
+      child = right_child
+  
+  if(words[root] < words[child]):
+    words[root], words[child] = words[child], words[root]
+    heapify(child, size)
   pass
-
+  
 def main():
+  count = len(words)
+  parents_last_index = count // 2 + 1
+  for i in range(parents_last_index, -1, -1):
+    heapify(i, count)
+
+  print("heaped: ", words)
   pass
 
 if __name__ == '__main__':
