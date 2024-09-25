@@ -44,9 +44,17 @@ def main():
   for i in range(parents_last_index, -1, -1):
     heapify(i, count)
 
+
   print("heaped: ", words)
+
+  sort_last_index = count - 1
+  while sort_last_index > 0:
+    words[0], words[sort_last_index] = words[sort_last_index], words[0]
+    heapify(0, sort_last_index)
+    sort_last_index -= 1
   pass
 
+  print("sorted: ", words)
 if __name__ == '__main__':
   main()
 
